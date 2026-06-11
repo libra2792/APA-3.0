@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f4f0e8">
+<title>AIA Pro Achiever 3.0 · Odyssey Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   FOREST & PAPER, editorial-financial design system
+   Display: Source Serif 4 · Body: Source Sans 3
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --navy:#1c1c1a;
+  --gold:#1e4d3b;
+  --gold-light:#2d6a4f;
+  --cream:#f4f0e8;
+  --card:#ffffff;
+  --border:#d6d0c2;
+  --mid:#46443f;
+  --light:#888578;
+  --teal:#4a7b5e;
+  --green:#1e4d3b;
+  --red:#8b3a3a;
+  --copper:#a35d2a;
+  --accent:#1e4d3b;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Source Sans 3',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--cream);color:var(--navy);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;}
+table,.ba-amt,.ts-num,.sa-v,.fee-val,.stat-number,.sur-yr,.tier-pct,.proj-val,.tl-amt{font-variant-numeric:tabular-nums;}
+
+/* Display typography */
+.hero h1,.section h2,.card h3,.sec-toggle-title,.proj-h3{
+  font-family:'Source Serif 4',serif;font-weight:500;letter-spacing:-.005em;
+}
+.hero h1{font-weight:500;letter-spacing:-.012em;}
+.hero h1 em{font-style:italic;font-weight:500;}
+
+/* Large numbers, clean sans, semibold, tabular */
+.stat-number,.ba-amt,.fee-val,.tier-pct,.proj-val,.tl-amt,.ts-num,.sa-v{
+  font-family:'Source Sans 3',sans-serif;font-weight:600;letter-spacing:-.01em;
+}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(244,240,232,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:13px max(32px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-logo{font-family:'Source Serif 4',serif;font-size:17px;font-weight:600;letter-spacing:.02em;}
+.nav-logo span{color:var(--gold);font-style:italic;}
+.nav-links{display:flex;gap:22px;flex-wrap:wrap;}
+.nav-links a{text-decoration:none;color:var(--mid);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+
+/* HERO */
+.hero{max-width:960px;margin:0 auto;padding:80px max(32px,env(safe-area-inset-left)) 48px;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.hero h1{font-family:'Source Serif 4',serif;font-size:clamp(44px,7vw,80px);line-height:1;font-weight:400;margin-bottom:24px;}
+.hero h1 em{color:var(--gold);font-style:italic;display:block;}
+.hero-rule{width:100px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;margin-bottom:28px;}
+.hero-lead{font-size:19px;color:var(--mid);max-width:680px;font-weight:300;line-height:1.7;}
+.hero-lead strong{color:var(--navy);font-weight:600;}
+
+/* STAT GRID */
+.stat-grid{max-width:960px;margin:0 auto 64px;padding:0 max(32px,env(safe-area-inset-left));display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:24px 22px;position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+.stat-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--light);margin-bottom:10px;font-weight:500;}
+.stat-number{font-size:38px;line-height:1;color:var(--navy);margin-bottom:4px;}
+.stat-number.gold{color:var(--gold);}
+.stat-number.teal{color:var(--teal);}
+.stat-sub{font-size:12px;color:var(--light);}
+.unit{font-size:18px;color:var(--light);font-weight:400;margin-left:2px;}
+
+@media(max-width:720px){
+  .stat-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:640px){
+  .nav-links{display:none;}
+  .stat-number{font-size:26px !important;}
+  .stat-card .unit{font-size:14px;}
+}
+
+/* COLLAPSIBLE SECTIONS */
+.sec-collapse-wrap{margin-bottom:0;}
+.sec-toggle-bar{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;padding:22px max(32px,env(safe-area-inset-left));border-top:1px solid var(--border);background:transparent;transition:background .15s;gap:16px;}
+.sec-toggle-bar:hover{background:rgba(0,0,0,.02);}
+.sec-toggle-left{display:flex;align-items:center;gap:16px;}
+.sec-toggle-num{font-family:'Source Serif 4',serif;font-style:italic;font-size:16px;color:var(--gold);opacity:.8;flex-shrink:0;}
+.sec-toggle-title{font-family:'Source Serif 4',serif;font-size:clamp(20px,3vw,28px);font-weight:500;line-height:1.1;}
+.sec-toggle-subtitle{font-size:13px;color:var(--light);margin-top:3px;}
+.sec-chevron{font-size:22px;color:var(--light);transition:transform .35s cubic-bezier(.4,0,.2,1);flex-shrink:0;}
+.sec-collapse-wrap.open .sec-chevron{transform:rotate(180deg);}
+.sec-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1);}
+.sec-collapse-wrap.open .sec-body{max-height:9999px;}
+.sec-body-inner{padding:28px max(32px,env(safe-area-inset-left)) 56px;max-width:960px;margin:0 auto;}
+.sec-collapse-wrap:last-child .sec-toggle-bar{border-bottom:1px solid var(--border);}
+.sec-collapse-wrap.open:last-child .sec-toggle-bar{border-bottom:none;}
+
+@media(max-width:640px){
+  .sec-toggle-bar{padding:18px max(16px,env(safe-area-inset-left));}
+  .sec-toggle-title{font-size:clamp(20px,5vw,24px);}
+  .sec-body-inner{padding:20px max(16px,env(safe-area-inset-left)) 44px;}
+}
+
+/* USE CASES */
+.uc-item{border:1px solid var(--border);border-radius:6px;margin-bottom:12px;overflow:hidden;background:var(--card);transition:box-shadow .2s;}
+.uc-item:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);}
+.uc-header{display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer;user-select:none;}
+.uc-header:hover{background:rgba(0,0,0,.01);}
+.uc-icon{font-size:26px;flex-shrink:0;width:42px;text-align:center;}
+.uc-title-wrap{flex:1;}
+.uc-title{font-family:'Source Serif 4',serif;font-size:19px;font-weight:500;color:var(--navy);}
+.uc-tagline{font-size:13px;color:var(--light);margin-top:3px;}
+.uc-chevron{font-size:18px;color:var(--light);transition:transform .3s;}
+.uc-item.open .uc-chevron{transform:rotate(180deg);}
+.uc-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);}
+.uc-item.open .uc-body{max-height:1800px;}
+.uc-body-inner{padding:0 24px 22px;}
+.uc-body-inner p{color:var(--mid);font-size:14.5px;line-height:1.7;margin-bottom:12px;}
+.uc-body-inner p strong{color:var(--navy);}
+.uc-highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px;}
+.uc-hl{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
+.uc-hl-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:4px;}
+.uc-hl-val{font-size:13.5px;font-weight:500;color:var(--navy);line-height:1.4;}
+.uc-moat{border-color:var(--gold);background:linear-gradient(180deg,#fff,#f9f5ed);}
+.uc-moat .uc-icon{color:var(--gold);}
+.uc-moat .uc-title::after{content:' ★ moat';font-family:'Source Serif 4',serif;font-style:italic;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-left:8px;font-weight:400;opacity:.7;}
+@media(max-width:640px){
+  .uc-highlights{grid-template-columns:1fr;}
+  .uc-header{padding:16px 18px;gap:12px;}
+  .uc-title{font-size:16.5px;}
+  .uc-body-inner{padding:0 18px 18px;}
+}
+
+/* KEY FEATURES GRID */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:22px 20px;}
+.feat-card .feat-icon{font-size:22px;margin-bottom:10px;display:block;}
+.feat-card h4{font-family:'Source Serif 4',serif;font-size:17px;font-weight:500;color:var(--navy);margin-bottom:6px;line-height:1.25;}
+.feat-card p{font-size:13px;color:var(--mid);line-height:1.55;}
+.feat-card .feat-pill{display:inline-block;background:var(--cream);color:var(--gold);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:3px 8px;border-radius:4px;margin-top:8px;}
+@media(max-width:720px){
+  .feat-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .feat-grid{grid-template-columns:1fr;}
+}
+
+/* WELCOME BONUS CALCULATOR */
+.calc-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:30px;margin-bottom:18px;}
+.calc-card h3{font-family:'Source Serif 4',serif;font-size:22px;font-weight:500;margin-bottom:6px;line-height:1.3;}
+.calc-lead{font-size:13.5px;color:var(--light);margin-bottom:24px;}
+.calc-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:10px;flex-wrap:wrap;}
+.ba-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--light);font-weight:500;margin-bottom:4px;}
+.ba-amt{font-size:30px;color:var(--navy);}
+.ba-amt.gold{color:var(--gold);}
+.sl-wrap{margin:14px 0 22px;}
+.sl-labels{display:flex;justify-content:space-between;font-size:10.5px;color:var(--light);margin-bottom:8px;letter-spacing:.04em;}
+input[type=range]{-webkit-appearance:none;width:100%;height:5px;background:var(--border);border-radius:3px;outline:none;cursor:pointer;touch-action:pan-y;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--card);border:2.5px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.15);cursor:grab;transition:transform .15s;}
+input[type=range]::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.08);}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--card);border:2.5px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.15);cursor:grab;}
+
+/* IIP toggle */
+.iip-toggle{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px;}
+.iip-btn{padding:14px 10px;border-radius:8px;border:1.5px solid var(--border);background:var(--card);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;color:var(--mid);text-align:center;}
+.iip-btn .iip-yrs{display:block;font-family:'Source Serif 4',serif;font-style:italic;font-size:22px;color:var(--gold);margin-bottom:2px;font-weight:500;}
+.iip-btn:hover{border-color:var(--gold-light);}
+.iip-btn.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+.iip-btn.active .iip-yrs{color:#fff;}
+
+/* Tier markers */
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;margin-bottom:20px;}
+.tier{padding:10px 8px;border-radius:6px;border:1.5px solid var(--border);background:var(--cream);transition:all .25s;text-align:center;}
+.tier.active{border-color:var(--gold);background:#fff;box-shadow:0 2px 8px rgba(30,77,59,.12);}
+.tier-lbl{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--light);font-weight:600;}
+.tier-rng{font-size:11px;color:var(--mid);margin:2px 0 4px;}
+.tier-pct{font-size:17px;color:var(--navy);font-weight:600;}
+.tier.active .tier-pct{color:var(--gold);}
+
+/* Year bars */
+.wb-bars{display:flex;align-items:flex-end;justify-content:center;gap:18px;height:160px;padding:14px 0 4px;border-bottom:1px solid var(--border);margin:18px 0 10px;}
+.wb-bcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;max-width:90px;}
+.wb-bval{font-size:13.5px;color:var(--navy);font-weight:600;}
+.wb-bar{width:100%;border-radius:4px 4px 0 0;min-height:4px;background:linear-gradient(180deg,var(--accent),var(--gold-light));transition:height .5s cubic-bezier(.34,1.56,.64,1);}
+.wb-blbl{font-size:11px;color:var(--mid);font-weight:500;letter-spacing:.04em;}
+.wb-sum{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed var(--border);padding-top:14px;margin-top:8px;font-size:13.5px;color:var(--mid);}
+.wb-sum strong{font-family:'Source Sans 3',sans-serif;font-size:20px;color:var(--gold);font-weight:600;}
+
+/* TIMELINE */
+.tl-wrap{position:relative;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:36px 28px 28px;}
+.tl-phases{display:grid;grid-template-columns:1.2fr 1fr 1.2fr 0.8fr;gap:14px;position:relative;}
+.tl-phase{padding:18px 16px;background:var(--cream);border-radius:8px;border:1px solid var(--border);position:relative;}
+.tl-phase.iip{border-color:var(--gold-light);}
+.tl-phase.sb1{border-color:var(--teal);}
+.tl-phase.sb2{background:linear-gradient(180deg,#fff,#f4ead8);border-color:var(--copper);}
+.tl-phase.draw{border-color:var(--mid);}
+.tl-pyrs{font-family:'Source Serif 4',serif;font-style:italic;font-size:13px;color:var(--gold);margin-bottom:6px;}
+.tl-ptitle{font-family:'Source Serif 4',serif;font-size:16px;font-weight:500;color:var(--navy);margin-bottom:8px;line-height:1.25;}
+.tl-pbody{font-size:12px;color:var(--mid);line-height:1.55;}
+.tl-pbody strong{color:var(--navy);font-weight:600;}
+.tl-amt{display:block;font-size:18px;color:var(--gold);margin-top:8px;font-weight:600;}
+@media(max-width:720px){
+  .tl-phases{grid-template-columns:1fr 1fr;}
+}
+
+/* PROJECTION */
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:30px;}
+.proj-h3{font-size:22px;margin-bottom:6px;}
+.proj-controls{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:18px;margin-bottom:24px;}
+@media(max-width:640px){.proj-controls{grid-template-columns:1fr;}}
+.irr-toggle{display:flex;gap:6px;margin-top:8px;}
+.irr-btn{flex:1;padding:10px 6px;border-radius:8px;border:1.5px solid var(--border);background:transparent;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;color:var(--mid);}
+.irr-btn.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+.proj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px;}
+.proj-cell{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:16px 14px;position:relative;}
+.proj-cell::before{content:'';position:absolute;top:0;left:0;width:3px;bottom:0;background:var(--gold);}
+.proj-cell.hl::before{background:var(--copper);}
+.proj-cell-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--light);font-weight:600;margin-bottom:6px;}
+.proj-cell-yr{font-size:11px;color:var(--mid);margin-bottom:4px;}
+.proj-val{font-size:22px;color:var(--navy);}
+.proj-val.gold{color:var(--gold);}
+@media(max-width:720px){.proj-grid{grid-template-columns:1fr 1fr;}}
+.proj-note{font-size:12px;color:var(--light);line-height:1.6;margin-top:18px;padding:14px 16px;background:var(--cream);border-left:3px solid var(--border);border-radius:0 6px 6px 0;}
+.proj-note strong{color:var(--mid);}
+
+/* CI WAIVER COMPARISON */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+@media(max-width:720px){.cmp-grid{grid-template-columns:1fr;}}
+.cmp-col{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 22px 24px;}
+.cmp-col.win{border-color:var(--gold);background:linear-gradient(180deg,#fff,#f9f5ed);}
+.cmp-tag{display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--cream);color:var(--mid);margin-bottom:10px;}
+.cmp-col.win .cmp-tag{background:var(--gold);color:#fff;}
+.cmp-col h4{font-family:'Source Serif 4',serif;font-size:18px;font-weight:500;margin-bottom:14px;color:var(--navy);}
+.cmp-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--mid);line-height:1.45;}
+.cmp-row:last-child{border-bottom:none;}
+.cmp-row .ic{font-size:14px;flex-shrink:0;margin-top:1px;}
+.cmp-row.good .ic{color:var(--gold);}
+.cmp-row.bad .ic{color:var(--red);}
+.cmp-row.neutral .ic{color:var(--light);}
+.ci-scenario{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;margin-top:18px;}
+.ci-scenario h4{font-family:'Source Serif 4',serif;font-size:18px;font-weight:500;margin-bottom:12px;}
+.ci-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 4px;}
+@media(max-width:720px){.ci-flow{grid-template-columns:1fr 1fr;}}
+.ci-step{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:14px 12px;position:relative;}
+.ci-step-num{font-family:'Source Serif 4',serif;font-style:italic;font-size:12px;color:var(--gold);margin-bottom:4px;}
+.ci-step-t{font-size:13px;color:var(--navy);font-weight:600;margin-bottom:4px;line-height:1.3;}
+.ci-step-b{font-size:11.5px;color:var(--mid);line-height:1.45;}
+
+/* SUITABILITY */
+.suit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:720px){.suit-grid{grid-template-columns:1fr;}}
+.suit-col{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;}
+.suit-col.yes{border-left:4px solid var(--gold);}
+.suit-col.no{border-left:4px solid var(--red);}
+.suit-col h4{font-family:'Source Serif 4',serif;font-size:17px;font-weight:500;margin-bottom:14px;}
+.suit-col ul{list-style:none;padding:0;}
+.suit-col li{font-size:13.5px;color:var(--mid);padding:7px 0 7px 18px;line-height:1.5;border-bottom:1px solid var(--border);position:relative;}
+.suit-col li:last-child{border-bottom:none;}
+.suit-col li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;}
+.suit-col.yes li::before{background:var(--gold);}
+.suit-col.no li::before{background:var(--red);}
+
+/* FEES */
+.fee-row{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--border);}
+.fee-row:last-child{border-bottom:none;}
+.fee-name{font-family:'Source Serif 4',serif;font-size:16px;font-weight:500;color:var(--navy);}
+.fee-desc{font-size:13px;color:var(--mid);line-height:1.5;}
+.fee-val{font-size:18px;color:var(--gold);text-align:right;white-space:nowrap;}
+.fee-val.muted{color:var(--light);font-size:14px;font-weight:500;}
+@media(max-width:640px){
+  .fee-row{grid-template-columns:1fr;gap:6px;}
+  .fee-val{text-align:left;}
+}
+
+/* DIVIDER + FOOTER */
+hr.divider{border:none;height:1px;background:var(--border);max-width:960px;margin:0 auto;}
+footer{padding:60px max(32px,env(safe-area-inset-left));text-align:center;color:var(--light);font-size:12px;line-height:1.7;border-top:1px solid var(--border);background:var(--cream);}
+footer strong{color:var(--mid);font-weight:600;}
+footer .sig{font-family:'Source Serif 4',serif;font-style:italic;font-size:15px;color:var(--mid);margin-bottom:8px;display:block;}
+
+/* HEADS-UP CALLOUT (used in lock-in disclosure) */
+.heads-up{background:linear-gradient(180deg,#fff,#fbf6ec);border:1px solid var(--copper);border-left:4px solid var(--copper);border-radius:6px;padding:16px 18px;margin:18px 0;}
+.heads-up-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);font-weight:700;margin-bottom:4px;}
+.heads-up p{font-size:13.5px;color:var(--mid);line-height:1.6;}
+.heads-up p strong{color:var(--navy);}
+
+
+/* FEE TABLE */
+.fee-tbl{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px;}
+.fee-tbl th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--light);text-align:left;padding:9px 12px;border-bottom:1.5px solid var(--border);font-weight:600;}
+.fee-tbl th:not(:first-child),.fee-tbl td:not(:first-child){text-align:right;}
+.fee-tbl td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--mid);}
+.fee-tbl td:first-child{font-weight:500;color:var(--navy);}
+.fee-tbl tr:last-child td{border-bottom:none;}
+.fee-tbl .z{color:var(--gold);font-weight:600;}
+
+/* RISK DEFENCE CARDS */
+.risk-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px 18px;margin-bottom:14px;}
+.risk-name{font-family:'Source Serif 4',serif;font-size:18px;font-weight:500;margin-bottom:6px;color:var(--navy);}
+.risk-name .risk-no{font-style:italic;color:var(--gold);font-size:14px;margin-right:8px;}
+.risk-sub{font-size:13px;color:var(--mid);margin-bottom:16px;line-height:1.55;max-width:640px;}
+.risk-chart{width:100%;}
+.risk-chart svg{width:100%;height:auto;display:block;}
+.risk-counter{margin-top:14px;background:var(--cream);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:10px 14px;font-size:13px;color:var(--mid);line-height:1.55;}
+.risk-counter span{display:block;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:2px;}
+.risk-src{font-size:10.5px;color:var(--light);margin-top:8px;}
+
+/* HOLISTIC PORTFOLIO GRID */
+.port-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px;}
+@media(max-width:860px){.port-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.port-grid{grid-template-columns:1fr;}}
+.port-cell{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:14px 14px 16px;}
+.port-cell.hl{border-color:var(--gold);background:linear-gradient(180deg,#fff,#f9f5ed);}
+.port-icon{font-size:20px;margin-bottom:6px;}
+.port-name{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px;line-height:1.3;}
+.port-role{font-size:11.5px;color:var(--mid);line-height:1.5;}
+
+/* SECTION INTRO */
+.sec-intro{font-size:14.5px;color:var(--mid);max-width:680px;line-height:1.7;margin-bottom:22px;}
+
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="nav-logo">AIA Pro Achiever<span> 3.0</span></div>
+  <div class="nav-links">
+    <a href="#secWrap1">Use Cases</a>
+    <a href="#secWrap2">Features</a>
+    <a href="#secWrap4">Journey</a>
+    <a href="#secWrap3">Bonus</a>
+    <a href="#secWrap5">Projection</a>
+    <a href="#secWrap6">vs DIY</a>
+    <a href="#secWrap9">Risk Defences</a>
+    <a href="#secWrap7">Suitability</a>
+    <a href="#secWrap8">Fees</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Regular-Premium ILP · AIA Singapore · Prepared by Odyssey Advisory</div>
+  <h1>AIA Pro Achiever<em>3.0</em></h1>
+  <div class="hero-rule"></div>
+  <p class="hero-lead">A <strong>regular-premium investment plan</strong> for long-horizon goals: children's education, retirement, housing upgrade. <strong>100% of your premium</strong> is invested from day one, with welcome bonuses of <strong>up to 75%</strong> in the first three years and a step-up special bonus that continues for as long as you keep investing.</p>
+</div>
+
+<!-- STAT GRID -->
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-label">Day-One Allocation</div>
+    <div class="stat-number gold">100<span class="unit">%</span></div>
+    <div class="stat-sub">Premium invested from start</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Welcome Bonus · up to</div>
+    <div class="stat-number">75<span class="unit">%</span></div>
+    <div class="stat-sub">Yrs 1-3 · tiered by premium &amp; IIP</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Special Bonus</div>
+    <div class="stat-number teal" style="font-size:28px">5% → 8<span class="unit">%</span></div>
+    <div class="stat-sub">Yr 10-20 · then Yr 21 onwards</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Supp. Charge</div>
+    <div class="stat-number" style="font-size:26px;line-height:1.1">0.325<span class="unit">% /mth</span><span class="unit" style="display:block;font-size:13px;margin-left:0;margin-top:2px">first 10 yrs only</span></div>
+    <div class="stat-sub">Then 0% for life of policy</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════ § 01 USE CASES ═══════════ -->
+<div class="sec-collapse-wrap open" id="secWrap1">
+  <div class="sec-toggle-bar" onclick="toggleSec(1)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 01</div>
+      <div>
+        <div class="sec-toggle-title">Use Cases &amp; USPs</div>
+        <div class="sec-toggle-subtitle">Five ways this plan can work for your goals</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <div id="ucContainer"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ § 02 KEY FEATURES ═══════════ -->
+<div class="sec-collapse-wrap" id="secWrap2">
+  <div class="sec-toggle-bar" onclick="toggleSec(2)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 02</div>
+      <div>
+        <div class="sec-toggle-title">Key Features</div>
+        <div class="sec-toggle-subtitle">Six things that matter, in plain English</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <p class="sec-intro">The mechanics below are what make Pro Achiever 3.0 different from a DIY portfolio. They're also the things most likely to be skimmed over in a brochure, so read them once, carefully.</p>
+      <div class="feat-grid">
+        <div class="feat-card"><span class="feat-icon">💯</span><h4>100% premium invested from Day 1</h4><p>Every dollar you pay goes into your chosen funds immediately. No upfront sales charge eating into your capital.</p><span class="feat-pill">Full allocation</span></div>
+        <div class="feat-card"><span class="feat-icon">🎁</span><h4>Welcome Bonus over Years 1-3</h4><p>Up to <strong>75%</strong> credited across the first three annual premiums. Bonus tier depends on your annual premium amount and your IIP.</p><span class="feat-pill">See §04 calculator</span></div>
+        <div class="feat-card"><span class="feat-icon">📈</span><h4>Step-up Special Bonus, for life</h4><p><strong>5%</strong> of annual premium credited from Year 10-20, stepping up to <strong>8%</strong> from Year 21 onwards, as long as you keep paying premiums.</p><span class="feat-pill">Perpetual</span></div>
+        <div class="feat-card"><span class="feat-icon">🛡️</span><h4>Supplementary charge capped at 10 yrs</h4><p>0.325% per month of policy value, but only for the first 10 years of premium payment. From Year 11 onwards: <strong>0%</strong>.</p><span class="feat-pill">Then zero</span></div>
+        <div class="feat-card"><span class="feat-icon">🗓️</span><h4>Choice of IIP, 10, 15, or 20 years</h4><p>The Initial Investment Period anchors lock-in, bonus tiers and surrender charges. Pick to match your goal horizon.</p><span class="feat-pill">Flexible</span></div>
+        <div class="feat-card"><span class="feat-icon">🌍</span><h4>Curated or DIY fund selection</h4><p>3 Elite Funds (institutional), 3 Mercer-Guided Portfolios, or 32 retail funds à la carte. Start simple, switch later.</p><span class="feat-pill">Wide choice</span></div>
+      </div>
+
+      <div class="heads-up" style="margin-top:24px">
+        <div class="heads-up-lbl">Important: read this</div>
+        <p>During the Initial Investment Period, <strong>dividends from your funds are automatically reinvested into the policy</strong> and cannot be drawn out as cash. Cash dividend payouts are only available <em>after</em> the IIP ends. This is the trade-off for the welcome bonus, step-up bonus and capped supplementary charge above. If you need accessible quarterly income from day one, a single-premium ILP like <strong>Platinum Wealth Venture 2.0</strong> may be a better fit. Speak to me about it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ § 04 LIFETIME JOURNEY ═══════════ -->
+<div class="sec-collapse-wrap" id="secWrap4">
+  <div class="sec-toggle-bar" onclick="toggleSec(4)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 03</div>
+      <div>
+        <div class="sec-toggle-title">The Lifetime Journey</div>
+        <div class="sec-toggle-subtitle">What happens at each stage</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <p class="sec-intro">A regular-premium ILP is a long arc. Here's the shape of the journey for an IIP-20 policy, the most common configuration for retirement and education goals.</p>
+
+      <div class="tl-wrap">
+        <div class="tl-phases">
+          <div class="tl-phase iip">
+            <div class="tl-pyrs">Year 1 to end of IIP</div>
+            <div class="tl-ptitle">Disciplined accumulation</div>
+            <div class="tl-pbody"><strong>100%</strong> premium invested. Welcome Bonus Years 1-3. Supp charge 0.325%/mth for first 10 years, then zero. Dividends auto-reinvested. Premium Pass available.</div>
+          </div>
+          <div class="tl-phase sb1">
+            <div class="tl-pyrs">Years 10 to 20</div>
+            <div class="tl-ptitle">Growth phase</div>
+            <div class="tl-pbody"><strong>5%</strong> Special Bonus credited each year on annual premium. Supp charge ends from Year 11 onwards.</div>
+            <span class="tl-amt">+5% / yr</span>
+          </div>
+          <div class="tl-phase sb2">
+            <div class="tl-pyrs">Year 21 onwards</div>
+            <div class="tl-ptitle">Compounding phase</div>
+            <div class="tl-pbody"><strong>8%</strong> Special Bonus credited every year, perpetually, as long as premiums continue. Zero supp charge.</div>
+            <span class="tl-amt" style="color:var(--copper)">+8% / yr</span>
+          </div>
+          <div class="tl-phase draw">
+            <div class="tl-pyrs">After IIP</div>
+            <div class="tl-ptitle">Drawdown / legacy</div>
+            <div class="tl-pbody">Switch to dividend-paying fund (e.g. AGDIF, ~4-5% p.a.) for retirement income. Or appoint child as Secondary Insured and pass the policy on.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ § 03 WELCOME BONUS CALCULATOR ═══════════ -->
+<div class="sec-collapse-wrap" id="secWrap3">
+  <div class="sec-toggle-bar" onclick="toggleSec(3)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 04</div>
+      <div>
+        <div class="sec-toggle-title">Welcome Bonus Calculator</div>
+        <div class="sec-toggle-subtitle">Find your exact tier, no guessing</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <p class="sec-intro">The headline "up to 75%" applies only at S$12,000+ annual premium on IIP 20. Your actual welcome bonus depends on both. Set yours below.</p>
+
+      <div class="calc-card">
+        <h3>How much would <em style="color:var(--gold);font-style:italic">your</em> Welcome Bonus be?</h3>
+        <p class="calc-lead">Slide for your annual premium. Click for your IIP. See your 3-year bonus breakdown.</p>
+
+        <div class="calc-row">
+          <div><div class="ba-label">Your Annual Premium</div><div class="ba-amt" id="apDisplay">S$7,200</div></div>
+          <div style="text-align:right"><div class="ba-label">Total Welcome Bonus (3-yr)</div><div class="ba-amt gold" id="wbTotal">S$3,456</div></div>
+        </div>
+        <div class="sl-wrap">
+          <div class="sl-labels"><span>S$2,400</span><span>S$7,200</span><span>S$12,000+</span></div>
+          <input type="range" id="apSlider" min="2400" max="18000" step="100" value="7200">
+        </div>
+
+        <div class="ba-label" style="margin-bottom:8px">Choose your Initial Investment Period</div>
+        <div class="iip-toggle">
+          <button class="iip-btn" data-iip="10" onclick="setIIP(10)"><span class="iip-yrs">10</span>years · shorter goal</button>
+          <button class="iip-btn active" data-iip="15" onclick="setIIP(15)"><span class="iip-yrs">15</span>years · balanced</button>
+          <button class="iip-btn" data-iip="20" onclick="setIIP(20)"><span class="iip-yrs">20</span>years · maximum bonus</button>
+        </div>
+
+        <div class="ba-label" style="margin-bottom:0px">Premium Tier (auto-selected)</div>
+        <div class="tiers" id="tiersRow"></div>
+
+        <div class="wb-bars" id="wbBars"></div>
+        <div class="wb-sum"><span>Total Welcome Bonus credited over Years 1-3</span><strong id="wbTotalSum">S$3,456</strong></div>
+        <div class="wb-sum" style="border-top:none;padding-top:6px"><span>Total premiums paid over 3 years</span><strong style="color:var(--mid)" id="wbTotalPrem">S$21,600</strong></div>
+        <div class="wb-sum" style="border-top:none;padding-top:6px"><span>Welcome bonus as % of 3-yr premiums</span><strong style="color:var(--gold)" id="wbPctOf3yr">16.0%</strong></div>
+      </div>
+
+      <div class="heads-up">
+        <div class="heads-up-lbl">Honest framing</div>
+        <p>The Welcome Bonus is genuine extra units credited to your policy, not a sales gimmick. But it is partly offset by the 0.325% per month supplementary charge during Years 1-10. The §05 projection shows the <strong>net</strong> effect, bonus added, charge deducted, fund growth applied. Look there for the true picture.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ § 05 PROJECTION ═══════════ -->
+<div class="sec-collapse-wrap" id="secWrap5">
+  <div class="sec-toggle-bar" onclick="toggleSec(5)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 05</div>
+      <div>
+        <div class="sec-toggle-title">Projected Policy Value</div>
+        <div class="sec-toggle-subtitle">Net of all bonuses, charges, and fund growth</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <p class="sec-intro">This simulation applies your premium, bonuses (welcome + step-up special), and the 0.325%/mth supp charge on policy value during Years 1-10. Toggle the IRR, 4% is the regulator's "low" illustration scenario, 8% is the "high".</p>
+
+      <div class="proj-card">
+        <h3 class="proj-h3">Your projected outcomes</h3>
+        <p class="calc-lead">Premium and IIP read from your §04 settings. Toggle IRR below to stress-test.</p>
+
+        <div class="proj-controls">
+          <div>
+            <div class="ba-label">Annual premium (from §04)</div>
+            <div class="ba-amt" id="projPremDisp">S$7,200</div>
+          </div>
+          <div>
+            <div class="ba-label">Investment Return (gross of FMC, matches AIA's BI)</div>
+            <div class="irr-toggle">
+              <button class="irr-btn" onclick="setIRR(4)">4% (BI low)</button>
+              <button class="irr-btn active" onclick="setIRR(6)">6% (mid)</button>
+              <button class="irr-btn" onclick="setIRR(8)">8% (BI high)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-grid" id="projGrid"></div>
+
+        <div class="proj-note">
+          <strong>How this is calculated:</strong> Each year, premium is added (100% allocation), welcome bonus credited in Years 1-3, special bonus credited from Year 10 onwards, gross fund growth applied, then FMC of 1.45% p.a. and the supplementary charge of 0.325% per month (Years 1-10 only) deducted. <strong>4% and 8% are the MAS-prescribed BI scenarios.</strong> Numbers will be within a few percent of AIA's official Benefit Illustration for the same inputs. Actual returns depend on the chosen fund and are not guaranteed.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ § 06 vs DIY ═══════════ -->
+<div class="sec-collapse-wrap" id="secWrap6">
+  <div class="sec-toggle-bar" onclick="toggleSec(6)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 06</div>
+      <div>
+        <div class="sec-toggle-title">Pro Achiever 3.0 vs DIY Investing</div>
+        <div class="sec-toggle-subtitle">An honest comparison, and where the moat lies</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <p class="sec-intro">If pure fee minimisation is the only goal, a brokerage or robo-advisor wins. The real question is: what happens if a critical illness hits at Year 7 of a 25-year goal? That's where the comparison gets interesting.</p>
+
+      <div class="cmp-grid">
+        <div class="cmp-col">
+          <span class="cmp-tag">DIY · IBKR · Endowus · StashAway</span>
+          <h4>Self-directed portfolio</h4>
+          <div class="cmp-row good"><span class="ic">✓</span><div>Low fees (0.20-0.80% p.a. all-in)</div></div>
+          <div class="cmp-row good"><span class="ic">✓</span><div>Full liquidity, sell anytime</div></div>
+          <div class="cmp-row good"><span class="ic">✓</span><div>Wide fund / ETF universe</div></div>
+          <div class="cmp-row bad"><span class="ic">✕</span><div>No welcome bonus or special bonus</div></div>
+          <div class="cmp-row bad"><span class="ic">✕</span><div><strong>No Critical Illness premium waiver.</strong> If you stop working due to CI, contributions stop. Plan slips.</div></div>
+          <div class="cmp-row bad"><span class="ic">✕</span><div>No structured discipline. Easy to skip contributions in down markets</div></div>
+          <div class="cmp-row bad"><span class="ic">✕</span><div><strong>US estate tax exposure.</strong> Direct US holdings above US$60,000 can attract US estate tax of up to 40% on death for Singapore investors</div></div>
+          <div class="cmp-row bad"><span class="ic">✕</span><div><strong>30% withholding tax</strong> on US equity dividends for direct holdings, as Singapore has no income tax treaty with the US</div></div>
+          <div class="cmp-row neutral"><span class="ic">○</span><div>No contractual death-benefit floor</div></div>
+        </div>
+
+        <div class="cmp-col win">
+          <span class="cmp-tag">AIA Pro Achiever 3.0 + ECPWP rider</span>
+          <h4>Insured investment vehicle</h4>
+          <div class="cmp-row good"><span class="ic">✓</span><div>Up to <strong>75%</strong> Welcome Bonus in first 3 years</div></div>
+          <div class="cmp-row good"><span class="ic">✓</span><div>Perpetual 5% → 8% Special Bonus from Year 10</div></div>
+          <div class="cmp-row good"><span class="ic">✓</span><div>Supp charge ends after Year 10, then zero forever</div></div>
+          <div class="cmp-row good"><span class="ic">✓</span><div><strong>CI Waiver of Premium.</strong> AIA pays your premiums if you're diagnosed with early/intermediate/major CI. Plan stays on track.</div></div>
+          <div class="cmp-row good"><span class="ic">✓</span><div>Contractual minimum death benefit floor (premiums paid)</div></div>
+          <div class="cmp-row good"><span class="ic">✓</span><div><strong>Luxembourg-domiciled UCITS funds.</strong> US equity dividends are withheld at the 15% treaty rate at source, versus the 30% an ordinary direct investor typically suffers</div></div>
+          <div class="cmp-row good"><span class="ic">✓</span><div><strong>No US-situs assets in your estate.</strong> The fund structure sits between you and the US securities, sidestepping the US$60,000 estate tax exposure</div></div>
+          <div class="cmp-row bad"><span class="ic">✕</span><div>Lock-in during IIP: surrender charges in Years 1-10 are heavy</div></div>
+          <div class="cmp-row bad"><span class="ic">✕</span><div>0.325%/mth supp charge for first 10 years (then 0%)</div></div>
+        </div>
+      </div>
+
+      <div class="ci-scenario">
+        <h4>The CI waiver, why it matters</h4>
+        <p style="font-size:13.5px;color:var(--mid);line-height:1.65">Scenario: you start Pro Achiever 3.0 at age 35, S$1,000/month into IIP 20. At Year 7 (age 42), you're diagnosed with an intermediate-stage cancer. With <strong>Early Critical Protector Waiver of Premium (II)</strong>, here's what happens:</p>
+
+        <div class="ci-flow">
+          <div class="ci-step">
+            <div class="ci-step-num">step 1</div>
+            <div class="ci-step-t">Diagnosis confirmed</div>
+            <div class="ci-step-b">CI claim submitted to AIA per rider terms.</div>
+          </div>
+          <div class="ci-step">
+            <div class="ci-step-num">step 2</div>
+            <div class="ci-step-t">AIA waives future premiums</div>
+            <div class="ci-step-b">For your APA 3.0 plan and any eligible riders, until rider expiry (age 55 / 60 / 65, your choice).</div>
+          </div>
+          <div class="ci-step">
+            <div class="ci-step-num">step 3</div>
+            <div class="ci-step-t">Your premiums = AIA's premiums</div>
+            <div class="ci-step-b">The S$12,000/yr that would have come from your salary now comes from AIA. Welcome bonus, special bonus, fund growth all continue as if nothing changed.</div>
+          </div>
+          <div class="ci-step">
+            <div class="ci-step-num">step 4</div>
+            <div class="ci-step-t">Retirement plan intact</div>
+            <div class="ci-step-b">At age 55, policy value is the same as if you'd kept paying yourself. The CI did not derail the goal.</div>
+          </div>
+        </div>
+
+        <p style="font-size:12px;color:var(--light);margin-top:14px;line-height:1.6">The rider has its own premium (paid separately, in addition to the regular premium of the basic plan), typically a few hundred dollars per year depending on age, gender, and chosen expiry age. A brokerage account or robo-advisor cannot offer this. There is no underlying insurer to take over your contributions. <strong>That is the moat.</strong></p>
+      </div>
+
+      <div class="calc-card" style="margin-top:18px;margin-bottom:0">
+        <h3>A complement, not a substitute</h3>
+        <p class="calc-lead" style="margin-bottom:14px">Pro Achiever 3.0 is not meant to replace your own investing. It is one instrument in a complete portfolio, each layer doing a different job.</p>
+        <div class="port-grid">
+          <div class="port-cell"><div class="port-icon">🏦</div><div class="port-name">Bank account</div><div class="port-role">Liquidity and emergency fund. 3 to 6 months of expenses, instantly accessible.</div></div>
+          <div class="port-cell"><div class="port-icon">🇸🇬</div><div class="port-name">Government bonds</div><div class="port-role">SSBs and T-bills. Capital-guaranteed ballast and parking for near-term goals.</div></div>
+          <div class="port-cell"><div class="port-icon">🤖</div><div class="port-name">Robo / ETFs</div><div class="port-role">Liquid, low-cost market exposure you can adjust or exit at any time.</div></div>
+          <div class="port-cell"><div class="port-icon">🪙</div><div class="port-name">Crypto (optional)</div><div class="port-role">High-risk satellite. Small allocation only, money you can afford to lose.</div></div>
+          <div class="port-cell hl"><div class="port-icon">🛡️</div><div class="port-name">AIA Pro Achiever 3.0</div><div class="port-role">The disciplined, insured long-horizon core. The only layer that keeps funding itself if critical illness strikes.</div></div>
+        </div>
+        <p style="font-size:11.5px;color:var(--light);margin-top:14px;line-height:1.6">Tax treatment described above is based on current rules and treaty rates, may change, and is general information rather than tax advice. Speak to a tax professional for your specific situation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ § 07 BUILT-IN RISK DEFENCES ═══════════ -->
+<div class="sec-collapse-wrap" id="secWrap9">
+  <div class="sec-toggle-bar" onclick="toggleSec(9)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 07</div>
+      <div>
+        <div class="sec-toggle-title">Built-in Risk Defences</div>
+        <div class="sec-toggle-subtitle">Five investor risks the plan is engineered to counter</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <p class="sec-intro">Every investment carries risk. The question is whether the structure works with your behaviour or against it. Five documented risks, drawn in data.</p>
+
+      <div class="risk-card">
+        <div class="risk-name"><span class="risk-no">i.</span>Behavioural risk: buying high, selling low</div>
+        <div class="risk-sub">US equity fund flows vs the S&amp;P 500, 1995-2021. Investors bought the most at the 2000 top, and sold the most at the 2002, 2009 and 2020 bottoms.</div>
+        <div class="risk-chart" id="rc1"></div>
+        <div class="risk-counter"><span>Built into the plan</span>A fixed regular premium invests on schedule in every market. The IIP removes the panic-sell button: discipline is in the contract, not your mood.</div>
+        <div class="risk-src">Re-drawn from rolling 3-month US equity flows vs S&amp;P 500 Index, 1995-2021. Illustrative.</div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-name"><span class="risk-no">ii.</span>Market-timing risk: waiting for the crash</div>
+        <div class="risk-sub">US$1,000 a month into a 60/40 portfolio, 1990-2020. Investing every month beat holding cash for 10% drawdowns by $350,000, and that assumes the market-timer had perfect discipline.</div>
+        <div class="risk-chart" id="rc2"></div>
+        <div class="risk-counter"><span>Built into the plan</span>Monthly premiums enter the market 12 times a year. You own every price along the way, so being right about timing stops mattering.</div>
+        <div class="risk-src">Re-drawn from Bloomberg Financial L.P. (Oct 2020), 60% S&amp;P 500 / 40% US Aggregate Bond. Past performance is not indicative of future results.</div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-name"><span class="risk-no">iii.</span>Short-horizon risk</div>
+        <div class="risk-sub">Best and worst S&amp;P 500 rolling returns by holding period, 1973 to mid-2009. Risk concentrates in short holding periods. Stretch the horizon and even the worst outcome turns positive.</div>
+        <div class="risk-chart" id="rc3"></div>
+        <div class="risk-counter"><span>Built into the plan</span>Your IIP of 10, 15 or 20 years anchors the plan in exactly the holding periods where history favours the investor, matched to your goal date rather than your mood.</div>
+        <div class="risk-src">Data: S&amp;P 500 rolling returns, 1973 to mid-2009 (D. Anspach).</div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-name"><span class="risk-no">iv.</span>Sequence-of-returns risk</div>
+        <div class="risk-sub">Two retirees. Same $100,000, same $5,000 yearly withdrawals, same 4.0% average return. The only difference is the order in which the returns arrive.</div>
+        <div class="risk-chart" id="rc4"></div>
+        <div class="risk-counter"><span>Built into the plan</span>After the IIP, you can switch into a dividend-paying fund and draw the payout instead of force-selling units in a downturn, while automatic rebalancing keeps risk in check approaching drawdown. No structure removes sequence risk entirely; this one gives you levers.</div>
+        <div class="risk-src">Computed from the published sequence-of-returns example (U.S. Bank Asset Management illustration). Hypothetical.</div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-name"><span class="risk-no">v.</span>Portfolio drift risk</div>
+        <div class="risk-sub">A portfolio left alone drifts to a riskier mix after every rally, just in time for the next correction. Rebalancing resets it, selling high and buying low by construction.</div>
+        <div class="risk-chart" id="rc5"></div>
+        <div class="risk-counter"><span>Built into the plan</span>Automatic fund rebalancing is built in. It trims what has run up and tops up what has fallen, enforcing buy-low-sell-high without you lifting a finger.</div>
+        <div class="risk-src">Illustrative mechanism. Rebalancing operates automatically within the plan's funds and guided portfolios.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ § 07 SUITABILITY ═══════════ -->
+<div class="sec-collapse-wrap" id="secWrap7">
+  <div class="sec-toggle-bar" onclick="toggleSec(7)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 08</div>
+      <div>
+        <div class="sec-toggle-title">Is this plan right for you?</div>
+        <div class="sec-toggle-subtitle">Honest fit and unfit cases</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <div class="suit-grid">
+        <div class="suit-col yes">
+          <h4>This plan suits you if…</h4>
+          <ul>
+            <li>You have a clear long-term goal: retirement, child's tertiary education, housing upgrade in 15+ years</li>
+            <li>You can comfortably commit at least S$200/month (or S$2,400/year) <em>without</em> needing this money before the IIP ends</li>
+            <li>You want a structured, hands-off approach, Elite Funds or Guided Portfolios, instead of picking your own ETFs</li>
+            <li>You want your investment plan to continue even if a critical illness stops you from working</li>
+            <li>You already have an emergency fund (3-6 months expenses) and adequate hospitalisation, life and CI cover in place</li>
+          </ul>
+        </div>
+        <div class="suit-col no">
+          <h4>This plan does NOT suit you if…</h4>
+          <ul>
+            <li>You may need this money before the IIP ends, surrender charges in Years 1-2 are 100%, dropping to 5% by Year 10</li>
+            <li>You're using this as your emergency fund or short-term savings, wrong instrument</li>
+            <li>You want regular cash dividend income from Day 1, dividends are reinvested during IIP. Consider PWV 2.0 instead</li>
+            <li>You're already maximally invested elsewhere and the additional premium would strain your monthly budget</li>
+            <li>You only want pure fee minimisation and have no concern about a CI derailing your plan, DIY is cheaper</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ § 08 FEES ═══════════ -->
+<div class="sec-collapse-wrap" id="secWrap8">
+  <div class="sec-toggle-bar" onclick="toggleSec(8)">
+    <div class="sec-toggle-left">
+      <div class="sec-toggle-num">§ 09</div>
+      <div>
+        <div class="sec-toggle-title">Fees &amp; Charges</div>
+        <div class="sec-toggle-subtitle">Everything you'll pay, on one page</div>
+      </div>
+    </div>
+    <div class="sec-chevron">▾</div>
+  </div>
+  <div class="sec-body">
+    <div class="sec-body-inner">
+      <div class="calc-card" style="padding:8px 30px 26px">
+        <div class="fee-row">
+          <div class="fee-name">Supplementary charge</div>
+          <div class="fee-desc">Charged monthly on the policy value during the first 10 years of premium payment. <strong>Ceases once the 11th annual premium is received.</strong> Not charged while a Premium Pass is active.</div>
+          <div class="fee-val">0.325% /mth</div>
+        </div>
+        <div style="padding:18px 0 0">
+          <div class="fee-name" style="margin-bottom:4px">Surrender / withdrawal charge (during IIP)</div>
+          <div class="fee-desc" style="margin-bottom:2px">A one-time charge on the amount surrendered or withdrawn during the IIP, based on the number of annual premiums paid. After your IIP ends, full surrender and partial withdrawals are <strong>free of charge</strong>.</div>
+          <table class="fee-tbl">
+            <thead><tr><th>Annual premiums paid</th><th>IIP 10</th><th>IIP 15</th><th>IIP 20</th></tr></thead>
+            <tbody>
+              <tr><td>1st and 2nd</td><td>100%</td><td>100%</td><td>100%</td></tr>
+              <tr><td>3rd</td><td>80%</td><td>80%</td><td>80%</td></tr>
+              <tr><td>4th</td><td>70%</td><td>70%</td><td>70%</td></tr>
+              <tr><td>5th</td><td>60%</td><td>60%</td><td>60%</td></tr>
+              <tr><td>6th</td><td>50%</td><td>50%</td><td>50%</td></tr>
+              <tr><td>7th</td><td>45%</td><td>45%</td><td>45%</td></tr>
+              <tr><td>8th</td><td>35%</td><td>35%</td><td>35%</td></tr>
+              <tr><td>9th</td><td>20%</td><td>20%</td><td>20%</td></tr>
+              <tr><td>10th</td><td>5%</td><td>5%</td><td>5%</td></tr>
+              <tr><td>11th to 15th</td><td class="z">0%</td><td>5%</td><td>5%</td></tr>
+              <tr><td>16th to 20th</td><td class="z">0%</td><td class="z">0%</td><td>5%</td></tr>
+              <tr><td>21st onwards</td><td class="z">0%</td><td class="z">0%</td><td class="z">0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="sig">Prepared exclusively for you by</span>
+  <strong>Nigel Wong Kok Chung</strong> · Director, Odyssey Advisory<br>
+  AIA Financial Services Consultant · MAS Rep WKC300317569<br>
+  +65 9875 9413 · nigelwongkc@gmail.com<br><br>
+  This presenter is for general information only and not a contract of insurance. Figures shown are illustrative and not guaranteed. Refer to the Policy Contract, Product Summary and Product Highlights Sheet for the precise terms.<br>
+  Protected up to specified limits by SDIC. This advertisement has not been reviewed by the Monetary Authority of Singapore.
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────
+// WELCOME BONUS DATA, exact tier × IIP × year matrix
+// Source: APA 3.0 Launch Deck slide 9 (Jan 2023)
+// Format: WB_DATA[IIP][tier] = [Y1%, Y2%, Y3%, total%]
+// Tiers indexed by premium band:
+//   0: $2,400 - $4,799
+//   1: $4,800 - $7,199
+//   2: $7,200 - $11,999
+//   3: $12,000 and above
+// ─────────────────────────────────────────────────────────
+const WB_DATA = {
+  10: [
+    [5, 0, 0, 5],
+    [5, 8, 10, 23],
+    [10, 13, 15, 38],
+    [15, 18, 20, 53],
+  ],
+  15: [
+    [8, 0, 0, 8],
+    [8, 11, 14, 33],
+    [13, 16, 19, 48],
+    [18, 21, 24, 63],
+  ],
+  20: [
+    [10, 0, 0, 10],
+    [10, 15, 20, 45],
+    [15, 20, 25, 60],
+    [20, 25, 30, 75],
+  ],
+};
+const TIER_RANGES = [
+  {lbl:'Tier 1', rng:'S$2,400-4,799', min:2400, max:4799},
+  {lbl:'Tier 2', rng:'S$4,800-7,199', min:4800, max:7199},
+  {lbl:'Tier 3', rng:'S$7,200-11,999', min:7200, max:11999},
+  {lbl:'Tier 4', rng:'S$12,000+', min:12000, max:Infinity},
+];
+
+let state = {
+  premium: 7200,
+  iip: 15,
+  irr: 6,
+};
+
+// ─────────────────────────────────────────────────────────
+function fmt(n){ return 'S$' + Math.round(n).toLocaleString('en-SG'); }
+function fmtK(n){
+  if(n >= 1000000) return 'S$' + (n/1000000).toFixed(2) + 'M';
+  if(n >= 10000)   return 'S$' + Math.round(n/1000) + 'K';
+  return 'S$' + Math.round(n).toLocaleString('en-SG');
+}
+function tierIdx(p){
+  if(p < 4800) return 0;
+  if(p < 7200) return 1;
+  if(p < 12000) return 2;
+  return 3;
+}
+
+// ─────────────────────────────────────────────────────────
+// WELCOME BONUS RENDER
+function renderWB(){
+  const p = state.premium;
+  const iip = state.iip;
+  const ti = tierIdx(p);
+  const rates = WB_DATA[iip][ti];           // [Y1, Y2, Y3, total]
+  const totalPct = rates[3];
+  const wbY1 = p * rates[0] / 100;
+  const wbY2 = p * rates[1] / 100;
+  const wbY3 = p * rates[2] / 100;
+  const wbTotal = wbY1 + wbY2 + wbY3;
+  const totalPrem3yr = p * 3;
+
+  document.getElementById('apDisplay').textContent = fmt(p);
+  document.getElementById('wbTotal').textContent = fmt(wbTotal);
+  document.getElementById('wbTotalSum').textContent = fmt(wbTotal);
+  document.getElementById('wbTotalPrem').textContent = fmt(totalPrem3yr);
+  document.getElementById('wbPctOf3yr').textContent = (wbTotal/totalPrem3yr*100).toFixed(1) + '%';
+
+  // Tiers
+  const tiersRow = document.getElementById('tiersRow');
+  tiersRow.innerHTML = TIER_RANGES.map((t,i) => {
+    const r = WB_DATA[iip][i];
+    return `<div class="tier ${i===ti?'active':''}">
+      <div class="tier-lbl">${t.lbl}</div>
+      <div class="tier-rng">${t.rng}</div>
+      <div class="tier-pct">${r[3]}%</div>
+    </div>`;
+  }).join('');
+
+  // Year bars
+  const barMax = Math.max(wbY1, wbY2, wbY3, 1);
+  const bars = document.getElementById('wbBars');
+  bars.innerHTML = ['Year 1','Year 2','Year 3'].map((lbl,i) => {
+    const val = [wbY1, wbY2, wbY3][i];
+    const pct = [rates[0], rates[1], rates[2]][i];
+    const h = (val / barMax) * 130;
+    return `<div class="wb-bcol">
+      <div class="wb-bval">${val>0 ? fmt(val) : ', '}</div>
+      <div class="wb-bar" style="height:${Math.max(h, val>0?6:0)}px"></div>
+      <div class="wb-blbl">${lbl} · ${pct}%</div>
+    </div>`;
+  }).join('');
+
+  // Sync projection
+  document.getElementById('projPremDisp').textContent = fmt(p);
+  renderProjection();
+}
+
+// ─────────────────────────────────────────────────────────
+// IIP setter
+function setIIP(years){
+  state.iip = years;
+  document.querySelectorAll('.iip-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.iip) === years);
+  });
+  renderWB();
+}
+
+// ─────────────────────────────────────────────────────────
+// IRR setter
+function setIRR(rate){
+  state.irr = rate;
+  document.querySelectorAll('.irr-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.startsWith(rate+'%'));
+  });
+  renderProjection();
+}
+
+// ─────────────────────────────────────────────────────────
+// PROJECTION SIMULATION
+// Year-by-year, applies:
+//   + Annual premium added to PV (100% allocation)
+//   + Welcome bonus (Y1-3 from WB_DATA)
+//   + Special bonus (5% Y10-20, 8% Y21+)
+//   - Supp charge 3.9% of PV (Y1-10 only)
+//   + Net fund growth at IRR
+// Order: add premium → add bonuses → growth → deduct supp charge
+// ─────────────────────────────────────────────────────────
+// Models AIA Pro Achiever 3.0 BI illustration logic:
+//   Each year:  + Premium (100% allocation)
+//               + Welcome Bonus (Y1-3)
+//               + Special Bonus (5% Y10-20, 8% Y21+)
+//               × Gross fund growth (gross IRR, before FMC)
+//               × (1 − FMC 1.45%)        , Fund Management Charge
+//               × (1 − Supp 3.9%)        , Years 1-10 only, then 0
+// IRR input is GROSS of FMC, matching AIA's Benefit Illustration convention.
+function simulate(premium, iip, irrGrossPct){
+  const irr = irrGrossPct / 100;
+  const FMC = 0.0145;
+  const SUPP = 0.039;
+  const ti = tierIdx(premium);
+  const wbPcts = WB_DATA[iip][ti];
+
+  const results = [];
+  let pv = 0;
+  let totalPremPaid = 0;
+  let totalSuppCharge = 0;
+
+  const maxYear = 65;
+  for(let y = 1; y <= maxYear; y++){
+    pv += premium;
+    totalPremPaid += premium;
+
+    if(y <= 3) pv += premium * wbPcts[y-1] / 100;
+    if(y >= 10 && y <= 20) pv += premium * 0.05;
+    else if(y >= 21) pv += premium * 0.08;
+
+    pv = pv * (1 + irr);          // gross fund growth
+    pv = pv * (1 - FMC);          // FMC
+    if(y <= 10){                  // supp charge during first 10 yrs only
+      const supp = pv * SUPP;
+      pv -= supp;
+      totalSuppCharge += supp;
+    }
+
+    results.push({year: y, pv, totalPremPaid, totalSuppCharge});
+  }
+  return results;
+}
+
+function renderProjection(){
+  const p = state.premium;
+  const iip = state.iip;
+  const irr = state.irr;
+  const sim = simulate(p, iip, irr);
+
+  // Key milestones: end of IIP, Y20, Y30, Y35 (~retirement at age 60-65 from age 30 start)
+  const milestones = [
+    {yr: iip, lbl: 'End of IIP', sub: `Year ${iip} · lock-in ends`},
+    {yr: 20, lbl: 'Year 20', sub: 'Special bonus 5%→8% transition'},
+    {yr: 30, lbl: 'Year 30', sub: '8% special bonus phase'},
+    {yr: 35, lbl: 'Year 35', sub: 'Long-horizon outcome'},
+  ];
+
+  const grid = document.getElementById('projGrid');
+  grid.innerHTML = milestones.map((m, i) => {
+    const row = sim[m.yr - 1];
+    const isHl = (m.yr === iip);
+    return `<div class="proj-cell ${isHl?'hl':''}">
+      <div class="proj-cell-lbl">${m.lbl}</div>
+      <div class="proj-cell-yr">${m.sub}</div>
+      <div class="proj-val ${isHl?'gold':''}">${fmtK(row.pv)}</div>
+      <div style="font-size:11px;color:var(--light);margin-top:4px">vs S$${(row.totalPremPaid/1000).toFixed(0)}K paid in</div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────────────────
+// USE CASES DATA
+// ─────────────────────────────────────────────────────────
+const UC_DATA = [
+  {
+    icon: '🎓',
+    title: "Children's Education Funding",
+    tagline: "Ring-fenced capital that matures in time for university, and survives a CI diagnosis.",
+    body: `<p>For parents planning ahead 15-20 years for tertiary education, Pro Achiever 3.0 offers a structured, disciplined accumulation vehicle. Set the IIP to align with when the child will start university, typically IIP 15 for a 3-year-old, IIP 20 for a newborn.</p>
+    <p>The plan can be issued in the parent's name (most common), with the child appointed as Secondary Insured. Upon the parent's passing, the policy continues seamlessly under the child's name with no new underwriting and no policy reset.</p>
+    <p><strong>Best suited for:</strong> Parents with a fixed education target (e.g. S$200K-500K for overseas tertiary) who want disciplined accumulation and protection of the goal against parental CI or death.</p>`,
+    highlights: [
+      {label:'Common configuration', val:'IIP 15 or IIP 20'},
+      {label:'Secondary Insured', val:'Child below 16 at appointment'},
+      {label:'Protection add-on', val:'Payor Benefit rider (CI/death waives premiums)'},
+      {label:'Key advantage', val:'Goal continues even if parent gets CI'},
+    ]
+  },
+  {
+    icon: '🌅',
+    title: 'Retirement Planning',
+    tagline: 'Disciplined contributions today, switch to dividend payout at retirement.',
+    body: `<p>For someone in their 30s or 40s, IIP 20 aligns the bonus structure perfectly with retirement at 55-65. During the IIP, all dividends from the underlying funds compound back into the policy. After the IIP ends, you may switch to a dividend-paying fund (such as AIA Global Dynamic Income Fund, which targets 4-5% quarterly distributions) to convert accumulated capital into a passive income stream.</p>
+    <p>The 5% Special Bonus from Year 10 and 8% from Year 21 onwards continues for as long as you keep paying premiums, even into your 60s and beyond. This creates a meaningful tailwind on top of fund performance.</p>
+    <p><strong>Best suited for:</strong> Professionals aged 30-50 targeting retirement at 55-65, who want to combine disciplined accumulation with optional retirement income.</p>`,
+    highlights: [
+      {label:'Typical configuration', val:'IIP 20 · Elite Adventurous'},
+      {label:'Income phase fund', val:'AGDIF (4-5% p.a. quarterly target)'},
+      {label:'Bonus continues', val:'8% special bonus perpetually from Y21'},
+      {label:'Key advantage', val:'Premium phase and income phase in one plan'},
+    ]
+  },
+  {
+    icon: '🏠',
+    title: 'Housing Upgrade Fund',
+    tagline: 'A 15-year disciplined accumulation aligned with HDB → private property transition.',
+    body: `<p>For young couples in their late 20s or 30s currently in an HDB flat with plans to upgrade to a private property in 12-15 years, Pro Achiever 3.0 with IIP 15 creates a parallel savings track. Capital accumulates with welcome bonus front-loading and the 5% special bonus from Year 10 onwards.</p>
+    <p>The Premium Pass feature is particularly valuable here: if cash flow gets tight (mortgage refinancing, renovation costs, child arrival), you can pause premiums up to 12 months per pass without penalty, without triggering a premium holiday charge.</p>
+    <p><strong>Best suited for:</strong> Couples with a defined upgrade target 10-15 years out, with surplus monthly cash flow they don't want to leave in low-yield savings.</p>`,
+    highlights: [
+      {label:'Common configuration', val:'IIP 15'},
+      {label:'Flexibility', val:'Premium Pass up to 24 months (IIP 15)'},
+      {label:'Capital target', val:'Down-payment top-up or stamp duty buffer'},
+      {label:'Key advantage', val:'Bonuses + discipline + budget flexibility'},
+    ]
+  },
+  {
+    icon: '🌏',
+    title: 'Hassle-Free Diversification (and beyond US)',
+    tagline: 'Institutional-grade global portfolios, managed for you, with one-tick simplicity.',
+    body: `<p>Most retail investors today are heavily concentrated in US large-cap tech. AIA Pro Achiever 3.0 gives access to globally diversified portfolios managed by AIA Investments (the institutional arm of AIA Group), with partnerships including Baillie Gifford, BlackRock, Capital Group, Wellington Management and Mercer.</p>
+    <p>You can start with one decision, Conservative, Balanced or Adventurous, at the Elite Fund tier (3 funds), or one of 3 Mercer-Guided Portfolios for retail fund diversification. Beyond that, 32 à la carte funds are available if you want to construct your own allocation later. Switch funds anytime, no charges.</p>
+    <p><strong>Best suited for:</strong> Investors who want global diversification (India, Europe, Asia ex-Japan, fixed income) without the effort of researching and managing the allocation themselves.</p>`,
+    highlights: [
+      {label:'Elite Funds', val:'3 institutional portfolios (Conservative/Balanced/Adventurous)'},
+      {label:'Guided Portfolios', val:'3 Mercer-advised retail allocations'},
+      {label:'À la carte', val:'32 retail funds across regions, sectors, asset classes'},
+      {label:'Fund switching', val:'Free, anytime'},
+    ]
+  },
+  {
+    icon: '🛡️',
+    title: 'CI-Protected Investment Plan',
+    tagline: "If a critical illness stops you from working, your plan keeps running.",
+    moat: true,
+    body: `<p>This is the structural advantage Pro Achiever 3.0 has over any brokerage account, robo-advisor, or ETF portfolio. By adding the <strong>Early Critical Protector Waiver of Premium (II)</strong> rider, you secure a contractual promise: if you're diagnosed with any covered early-stage, intermediate-stage or major-stage critical illness during the rider term, <em>AIA pays your premiums on your behalf</em>, for both the basic plan and any eligible riders, until the rider expiry age (your choice of 55, 60 or 65).</p>
+    <p>The investment plan does not skip a beat. The Welcome Bonus continues, the Special Bonus continues, the fund growth continues. The 25-year retirement plan stays a 25-year retirement plan, even if your income stops.</p>
+    <p><strong>No DIY investment vehicle can replicate this.</strong> There is no third-party that will take over contributions to your IBKR or Endowus account if you get cancer at 42. With Pro Achiever 3.0 plus ECPWP, that contractual safety net exists.</p>
+    <p><strong>Best suited for:</strong> Anyone whose long-term financial goal depends on continued contributions, i.e., almost everyone using a regular-premium investment plan. This is why CI riders are foundational, not optional, for this product.</p>`,
+    highlights: [
+      {label:'Rider', val:'Early Critical Protector WoP (II), covers early/intermediate/major CI'},
+      {label:'Cover term options', val:'Until age 55, 60 or 65'},
+      {label:'On valid claim', val:'AIA pays all future premiums of plan + eligible riders'},
+      {label:'Plan continuity', val:'Welcome bonus, special bonus, fund growth all continue'},
+    ]
+  },
+];
+
+function buildUC(){
+  const container = document.getElementById('ucContainer');
+  UC_DATA.forEach((uc, i) => {
+    const hlHtml = uc.highlights.map(h =>
+      `<div class="uc-hl"><div class="uc-hl-label">${h.label}</div><div class="uc-hl-val">${h.val}</div></div>`
+    ).join('');
+    const div = document.createElement('div');
+    div.className = 'uc-item' + (uc.moat ? ' uc-moat' : '');
+    div.innerHTML = `
+      <div class="uc-header" onclick="toggleUC(${i})">
+        <div class="uc-icon">${uc.icon}</div>
+        <div class="uc-title-wrap">
+          <div class="uc-title">${uc.title}</div>
+          <div class="uc-tagline">${uc.tagline}</div>
+        </div>
+        <div class="uc-chevron">▾</div>
+      </div>
+      <div class="uc-body" id="ucBody${i}">
+        <div class="uc-body-inner">
+          ${uc.body}
+          <div class="uc-highlights">${hlHtml}</div>
+        </div>
+      </div>`;
+    container.appendChild(div);
+  });
+}
+function toggleUC(i){
+  const item = document.querySelectorAll('.uc-item')[i];
+  item.classList.toggle('open');
+}
+
+// ─────────────────────────────────────────────────────────
+// COLLAPSIBLE SECTIONS
+// ─────────────────────────────────────────────────────────
+function toggleSec(n){
+  const wrap = document.getElementById('secWrap' + n);
+  wrap.classList.toggle('open');
+}
+
+// ─────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────
+document.getElementById('apSlider').addEventListener('input', (e) => {
+  state.premium = parseInt(e.target.value);
+  renderWB();
+});
+
+buildUC();
+renderWB();
+renderProjection();
+// ─────────────────────────────────────────────────────────
+// § 07 RISK DEFENCE CHARTS, native SVG, Forest & Paper palette
+// ─────────────────────────────────────────────────────────
+function buildRiskCharts(){
+  const C = {gold:'#1e4d3b', goldL:'#2d6a4f', red:'#8b3a3a', copper:'#a35d2a',
+             ink:'#1c1c1a', light:'#888578', border:'#d6d0c2', mid:'#46443f', tan:'#c9a87a'};
+  const FONT = "font-family:'Source Sans 3',sans-serif;";
+  const lin = (d,r) => v => r[0] + (v-d[0])/(d[1]-d[0])*(r[1]-r[0]);
+  const path = (pts,sx,sy) => pts.map((p,i)=>(i?'L':'M')+sx(p[0]).toFixed(1)+','+sy(p[1]).toFixed(1)).join(' ');
+  const txt = (x,y,str,size,fill,anchor,weight,style) =>
+    '<text x="'+x+'" y="'+y+'" font-size="'+size+'" fill="'+fill+'" text-anchor="'+(anchor||'start')+'"'+
+    (weight?' font-weight="'+weight+'"':'')+(style?' style="'+style+'"':'')+'>'+str+'</text>';
+
+  /* ══ i. BEHAVIOURAL: S&P with buy-top / sell-bottom markers ══ */
+  (function(){
+    const SP=[[1995,615],[1996,740],[1997,970],[1998,1229],[1999,1469],[2000.25,1520],[2001,1148],
+              [2002.75,815],[2003.5,1050],[2004,1212],[2005,1248],[2006,1418],[2007.75,1560],
+              [2008.9,903],[2009.2,735],[2010,1258],[2011,1258],[2012,1426],[2013,1848],[2014,2059],
+              [2015,2044],[2016,2239],[2017,2674],[2018,2507],[2019,3231],[2020.2,2304],[2020.9,3756],[2021.2,4766]];
+    const W=760,H=300, sx=lin([1995,2021.5],[46,W-14]), sy=lin([400,5000],[H-32,16]);
+    let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="'+FONT+'">';
+    for(let v=1000; v<=5000; v+=1000){
+      const y=sy(v);
+      s+='<line x1="46" x2="'+(W-14)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="'+C.border+'" stroke-width="1"/>';
+      s+=txt(40,y+3.5,(v/1000)+'K',10,C.light,'end');
+    }
+    for(let yr=1995; yr<=2020; yr+=5){ s+=txt(sx(yr),H-12,"'"+String(yr).slice(2),10,C.light,'middle'); }
+    s+='<path d="'+path(SP,sx,sy)+'" fill="none" stroke="'+C.gold+'" stroke-width="2.2" stroke-linejoin="round"/>';
+    s+=txt(W-14,30,'S&amp;P 500',10.5,C.light,'end');
+    const ann = (x,y,lines,mode) => {
+      const X=sx(x), Y=sy(y);
+      let a='<circle cx="'+X.toFixed(1)+'" cy="'+Y.toFixed(1)+'" r="9" fill="none" stroke="'+C.copper+'" stroke-width="1.8" stroke-dasharray="3 3"/>';
+      if(mode==='above'){ lines.forEach((l,i)=>{ a+=txt(X, Y-34+i*12, l, 10, C.copper, 'middle', 600); }); }
+      else if(mode==='right'){ lines.forEach((l,i)=>{ a+=txt(X+14, Y-2+i*12, l, 10, C.copper, 'start', 600); }); }
+      else if(mode==='belowleft'){ lines.forEach((l,i)=>{ a+=txt(X-14, Y+16+i*12, l, 10, C.copper, 'end', 600); }); }
+      return a;
+    };
+    s+=ann(2000.25,1520,['2000 · record buying','at the very top'],'above');
+    s+=ann(2002.75,815,['2002 · record selling','at the bottom'],'right');
+    s+=ann(2009.2,735,['2009 · selling','at the bottom'],'right');
+    s+=ann(2020.2,2304,['2020 · selling','in the crash'],'belowleft');
+    s+='</svg>';
+    document.getElementById('rc1').innerHTML=s;
+  })();
+
+  /* ══ ii. MARKET TIMING: invest monthly vs wait for dips ══ */
+  (function(){
+    const A=[[1990,5],[1992,32],[1994,70],[1996,120],[1998,210],[2000,330],[2001,345],[2002,300],
+             [2004,430],[2006,560],[2007,580],[2008,430],[2009,420],[2010,600],[2012,720],[2014,950],
+             [2016,1060],[2018,1240],[2018.8,1150],[2019.6,1500],[2020.2,1330],[2020.8,1680]];
+    const B=A.map(p=>[p[0], p[1]*(1-0.21*(p[0]-1990)/30.8)]);
+    const W=760,H=300, sx=lin([1990,2021],[54,W-96]), sy=lin([0,1750],[H-32,18]);
+    let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="'+FONT+'">';
+    [[500,'$0.5M'],[1000,'$1.0M'],[1500,'$1.5M']].forEach(g=>{
+      const y=sy(g[0]);
+      s+='<line x1="54" x2="'+(W-96)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="'+C.border+'" stroke-width="1"/>';
+      s+=txt(48,y+3.5,g[1],10,C.light,'end');
+    });
+    for(let yr=1990; yr<=2020; yr+=5){ s+=txt(sx(yr),H-12,"'"+String(yr).slice(2),10,C.light,'middle'); }
+    s+='<path d="'+path(B,sx,sy)+'" fill="none" stroke="'+C.copper+'" stroke-width="2" stroke-linejoin="round"/>';
+    s+='<path d="'+path(A,sx,sy)+'" fill="none" stroke="'+C.gold+'" stroke-width="2.4" stroke-linejoin="round"/>';
+    const ea=sy(1680), eb=sy(1327);
+    s+=txt(sx(2020.8)+8, ea+4, '$1.68M', 14, C.gold, 'start', 700);
+    s+=txt(sx(2020.8)+8, eb+4, '$1.33M', 14, C.copper, 'start', 700);
+    s+='<line x1="64" x2="86" y1="34" y2="34" stroke="'+C.gold+'" stroke-width="2.4"/>'+txt(92,38,'Invest every month',11,C.mid);
+    s+='<line x1="64" x2="86" y1="54" y2="54" stroke="'+C.copper+'" stroke-width="2"/>'+txt(92,58,'Hold cash, deploy after 10% drawdowns',11,C.mid);
+    s+='</svg>';
+    document.getElementById('rc2').innerHTML=s;
+  })();
+
+  /* ══ iii. SHORT HORIZON: best vs worst rolling returns ══ */
+  (function(){
+    const D=[{p:'1 yr',b:61,w:-43},{p:'3 yrs',b:33,w:-16},{p:'5 yrs',b:30,w:-6.6},
+             {p:'10 yrs',b:19.4,w:-3},{p:'15 yrs',b:19.5,w:3.7},{p:'20 yrs',b:18,w:6.4}];
+    const W=760,H=336, sy=lin([-50,80],[H-56,16]);
+    const plotL=50, plotR=W-14, gw=(plotR-plotL)/6;
+    let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="'+FONT+'">';
+    const hlX=plotL+4*gw+4;
+    s+='<rect x="'+hlX.toFixed(1)+'" y="12" width="'+(plotR-hlX-2).toFixed(1)+'" height="'+(H-62)+'" rx="6" fill="rgba(30,77,59,.055)" stroke="'+C.goldL+'" stroke-dasharray="4 4" stroke-width="1"/>';
+    [-40,-20,0,20,40,60,80].forEach(v=>{
+      const y=sy(v);
+      s+='<line x1="'+plotL+'" x2="'+plotR+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="'+(v===0?C.mid:C.border)+'" stroke-width="'+(v===0?1.4:1)+'"/>';
+      s+=txt(plotL-6,y+3.5,v+'%',10,C.light,'end');
+    });
+    D.forEach((d,i)=>{
+      const cx=plotL+(i+0.5)*gw, y0=sy(0), bw=32;
+      const yb=sy(d.b);
+      s+='<rect x="'+(cx-bw-3).toFixed(1)+'" y="'+yb.toFixed(1)+'" width="'+bw+'" height="'+(y0-yb).toFixed(1)+'" rx="3" fill="'+C.goldL+'"/>';
+      s+=txt(cx-bw/2-3, yb-6, '+'+d.b+'%', 11, C.gold, 'middle', 600);
+      const yw=sy(d.w);
+      if(d.w<0){
+        s+='<rect x="'+(cx+3).toFixed(1)+'" y="'+y0.toFixed(1)+'" width="'+bw+'" height="'+(yw-y0).toFixed(1)+'" rx="3" fill="'+C.red+'"/>';
+        s+=txt(cx+3+bw/2, yw+14, d.w+'%', 11, C.red, 'middle', 600);
+      } else {
+        s+='<rect x="'+(cx+3).toFixed(1)+'" y="'+yw.toFixed(1)+'" width="'+bw+'" height="'+(y0-yw).toFixed(1)+'" rx="3" fill="'+C.gold+'"/>';
+        s+=txt(cx+3+bw/2, yw-6, '+'+d.w+'%', 11, C.gold, 'middle', 700);
+      }
+      s+=txt(cx, H-32, d.p, 11, C.mid, 'middle', 500);
+    });
+    s+=txt(hlX+(plotR-hlX)/2, 30, 'even the worst outcome', 10.5, C.gold, 'middle', 700);
+    s+=txt(hlX+(plotR-hlX)/2, 42, 'is positive', 10.5, C.gold, 'middle', 700);
+    s+='<rect x="'+(plotL+150)+'" y="'+(H-20)+'" width="11" height="11" rx="2" fill="'+C.goldL+'"/>'+txt(plotL+166,H-11,'Best return',10.5,C.mid);
+    s+='<rect x="'+(plotL+260)+'" y="'+(H-20)+'" width="11" height="11" rx="2" fill="'+C.red+'"/>'+txt(plotL+276,H-11,'Worst return',10.5,C.mid);
+    s+='</svg>';
+    document.getElementById('rc3').innerHTML=s;
+  })();
+
+  /* ══ iv. SEQUENCE OF RETURNS: computed from exact published sequences ══ */
+  (function(){
+    const rUp=[8,11,18,14,12,9,11,9,7,5,-4,-8,-15,-6,-5];
+    const rDn=[-5,-6,-15,-8,-4,5,7,9,11,9,12,14,18,11,8];
+    const run = rs => { let v=100000; const out=[[0,100]]; rs.forEach((r,i)=>{ v=v*(1+r/100)-5000; out.push([i+1, v/1000]); }); return {pts:out, final:v}; };
+    const U=run(rUp), Dn=run(rDn);
+    const W=760,H=300, sx=lin([0,15],[58,W-104]), sy=lin([0,200],[H-34,20]);
+    let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="'+FONT+'">';
+    [50,100,150,200].forEach(v=>{
+      const y=sy(v);
+      s+='<line x1="58" x2="'+(W-104)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="'+C.border+'" stroke-width="1"/>';
+      s+=txt(52,y+3.5,'$'+v+'K',10,C.light,'end');
+    });
+    [0,5,10,15].forEach(v=>{ s+=txt(sx(v),H-14,'Yr '+v,10,C.light,'middle'); });
+    s+='<path d="'+path(U.pts,sx,sy)+'" fill="none" stroke="'+C.gold+'" stroke-width="2.4" stroke-linejoin="round"/>';
+    s+='<path d="'+path(Dn.pts,sx,sy)+'" fill="none" stroke="'+C.red+'" stroke-width="2.4" stroke-linejoin="round"/>';
+    const yU=sy(U.final/1000), yD=sy(Dn.final/1000);
+    s+=txt(sx(15)+8, yU+1, '$'+Math.round(U.final).toLocaleString('en-SG'), 13.5, C.gold, 'start', 700);
+    s+=txt(sx(15)+8, yU+14, 'up market first', 10, C.light, 'start');
+    s+=txt(sx(15)+8, yD+1, '$'+Math.round(Dn.final).toLocaleString('en-SG'), 13.5, C.red, 'start', 700);
+    s+=txt(sx(15)+8, yD+14, 'down market first', 10, C.light, 'start');
+    s+=txt(sx(7.5), 250, 'identical average return: 4.0% a year', 11, C.mid, 'middle', 0, 'font-style:italic');
+    s+='</svg>';
+    document.getElementById('rc4').innerHTML=s;
+  })();
+
+  /* ══ v. PORTFOLIO DRIFT: rebalancing cycle ══ */
+  (function(){
+    const W=760,H=252, barW=88, barH=140, top=56, gap=70;
+    const states=[
+      {st:70, c1:'Target mix', c2:'70 / 30', c2c:C.mid},
+      {st:85, c1:'After a rally', c2:'drifted to 85 / 15', c2c:C.red},
+      {st:70, c1:'Auto-rebalanced', c2:'back to 70 / 30', c2c:C.gold},
+      {st:55, c1:'After a fall', c2:'drifted to 55 / 45', c2c:C.red},
+      {st:70, c1:'Auto-rebalanced', c2:'back to 70 / 30', c2c:C.gold},
+    ];
+    const arrows=[
+      {l1:'stocks', l2:'rally', col:C.light, w:1.6},
+      {l1:'trim stocks', l2:'buy bonds', col:C.gold, w:2.2},
+      {l1:'stocks', l2:'fall', col:C.light, w:1.6},
+      {l1:'buy stocks', l2:'low', col:C.gold, w:2.2},
+    ];
+    let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="'+FONT+'">';
+    states.forEach((d,i)=>{
+      const x=20+i*(barW+gap);
+      const hs=barH*d.st/100, hb=barH-hs;
+      s+='<rect x="'+x+'" y="'+top+'" width="'+barW+'" height="'+hb.toFixed(1)+'" rx="0" fill="'+C.tan+'"/>';
+      s+='<rect x="'+x+'" y="'+(top+hb).toFixed(1)+'" width="'+barW+'" height="'+hs.toFixed(1)+'" fill="'+C.goldL+'"/>';
+      s+='<rect x="'+x+'" y="'+top+'" width="'+barW+'" height="'+barH+'" rx="4" fill="none" stroke="'+C.border+'" stroke-width="1"/>';
+      s+=txt(x+barW/2, top+hb+hs/2+4, d.st+'%', 13, '#ffffff', 'middle', 700);
+      if(hb>=18) s+=txt(x+barW/2, top+hb/2+4, (100-d.st)+'%', 11.5, C.ink, 'middle', 600);
+      s+=txt(x+barW/2, top+barH+22, d.c1, 11, C.mid, 'middle', 600);
+      s+=txt(x+barW/2, top+barH+36, d.c2, 10.5, d.c2c, 'middle', d.c2c===C.mid?400:700);
+    });
+    arrows.forEach((a,i)=>{
+      const x1=20+i*(barW+gap)+barW+8, x2=20+(i+1)*(barW+gap)-8, ymid=top+barH/2;
+      s+='<line x1="'+x1+'" x2="'+(x2-7)+'" y1="'+ymid+'" y2="'+ymid+'" stroke="'+a.col+'" stroke-width="'+a.w+'"/>';
+      s+='<polygon points="'+(x2-8)+','+(ymid-5)+' '+x2+','+ymid+' '+(x2-8)+','+(ymid+5)+'" fill="'+a.col+'"/>';
+      const cx=(x1+x2)/2;
+      s+=txt(cx, ymid-22, a.l1, 9.5, a.col, 'middle', a.col===C.gold?700:500);
+      s+=txt(cx, ymid-11, a.l2, 9.5, a.col, 'middle', a.col===C.gold?700:500);
+    });
+    s+='<rect x="20" y="16" width="11" height="11" rx="2" fill="'+C.goldL+'"/>'+txt(36,25,'Stocks',10.5,C.mid);
+    s+='<rect x="92" y="16" width="11" height="11" rx="2" fill="'+C.tan+'"/>'+txt(108,25,'Bonds',10.5,C.mid);
+    s+='</svg>';
+    document.getElementById('rc5').innerHTML=s;
+  })();
+}
+buildRiskCharts();
+
+</script>
+</body>
+</html>
